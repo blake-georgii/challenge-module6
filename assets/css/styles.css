@@ -10,3 +10,9 @@ header{
 h2{
     color: black;
 }
+
+.current-weather{
+    color: black;
+    border: solid black 4px;
+    height: 400px;
+}
