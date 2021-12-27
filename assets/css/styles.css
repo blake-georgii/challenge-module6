@@ -1,18 +1,18 @@
-ul{
-    list-style-type: none;
+ul {
+	list-style-type: none;
 }
 
-header{
-    text-align: center;
-    background-color: lightskyblue;
+header {
+	text-align: center;
+	background-color: lightskyblue;
 }
 
-h2{
-    color: black;
+h2 {
+	color: black;
 }
 
-.current-weather{
-    color: black;
-    border: solid black 4px;
-    height: 400px;
+.current-weather {
+	color: black;
+	border: solid black 4px;
+	height: 400px;
 }
