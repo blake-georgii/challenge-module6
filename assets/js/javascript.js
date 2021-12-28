@@ -1,7 +1,9 @@
+const form = document.getElementById('city-form');
+
 function fetchCity() {
     let key = 'ca321dd665a915445a40608ae28b8292';
     let limit = 1;
-    let cityName = document.getElementById('city-name');
+    let cityName = form.elements['city-name'].value;
 
     let url = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=${limit}&appid=${key}`;
 
@@ -11,7 +13,8 @@ function fetchCity() {
             return res.json();
         })
         .then((cityData) => {
-            fetchWeather(cityData);
+            console.log(cityData);
+            fetchWeather(cityData[0]);
         })
         .catch(console.err);
 };
@@ -40,3 +43,7 @@ function loadPage(weatherData){
     console.log(weatherData);
 };
 
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    fetchCity();
+});
