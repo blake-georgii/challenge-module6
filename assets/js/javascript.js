@@ -1,4 +1,5 @@
 const form = document.getElementById('city-form');
+let stuff;
 
 function fetchCity() {
     let key = 'ca321dd665a915445a40608ae28b8292';
@@ -43,19 +44,36 @@ function loadPage(weatherData) {
     console.log(weatherData);
     let day = new Date;
     loadDisplay(weatherData.current, day);
+    loadCards(weatherData.daily, day);
 };
 
 
 function loadDisplay(currentWeather, day) {
     let display = document.getElementById('current-weather');
 
+
     display.innerHTML = `
     <h2>${form.elements['city-name'].value} (${day.getMonth()}/${day.getDate()}/${day.getFullYear()})</h2>
     <p>Temp: ${currentWeather.temp}°F</p>
     <p>Wind: ${currentWeather.wind_speed}MPH</p>
     <p>Humidity: ${currentWeather.humidity}%</p>
-    <p>UV Index: ${currentWeather.uvi}</p>
+    <p>UV Index: <b class="uvi ${calcUVI(currentWeather.uvi)}">${currentWeather.uvi}</b></p>
     `
+    
+};
+
+function loadCards(dailyWeather, day) {
+    for (let i = 1; i < 6; i++) {
+        day.setDate(day.getDate() + 1);
+        document.getElementById(i).innerHTML= `<div class="card-body">
+        <h5 class="card-title">(${day.getMonth()}/${day.getDate()}/${day.getFullYear()})</h5>
+        <p class="card-text">Temp: ${dailyWeather[i].temp.day}°F</p>
+        <p class="card-text">Wind: ${dailyWeather[i].wind_speed}MPH</p>
+        <p class="card-text">Humidity: ${dailyWeather[i].humidity}%</p>
+        </div>
+        `
+
+    }
 
 };
 
