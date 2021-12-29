@@ -1,5 +1,6 @@
 ul {
 	list-style-type: none;
+	padding-left:0;
 }
 
 header {
@@ -9,6 +10,17 @@ header {
 
 h2 {
 	color: black;
+}
+
+.form-input { 
+	margin: 5px 5px;
+}
+
+.history-item {
+	background-color: lightgrey;
+	border-radius: 5px;
+	text-align: center;
+	font-style: bold;
 }
 
 .current-weather {
