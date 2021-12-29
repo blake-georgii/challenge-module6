@@ -1,10 +1,8 @@
 const form = document.getElementById('city-form');
-const history = document.getElementById('history');
 
-function fetchCity() {
+function fetchCity(cityName) {
     let key = 'ca321dd665a915445a40608ae28b8292';
     let limit = 1;
-    let cityName = form.elements['city-name'].value;
 
     let url = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=${limit}&appid=${key}`;
 
@@ -41,10 +39,11 @@ function fetchWeather(cityData, cityName) {
 };
 
 function createHistory(cityName) {
-    const e = document.createElement('li');
-    e.className = "history-item form-input"
-    e.innerHTML = `<p>${cityName}</p>`;
-    history.appendChild(e);
+    const e = document.createElement('button');
+    e.className = "container history-item form-input";
+    e.innerHTML = `${cityName}`;
+    e.type = 'submit';
+    form.appendChild(e);
 }
 
 function loadPage(weatherData, cityName) {
@@ -54,7 +53,6 @@ function loadPage(weatherData, cityName) {
     loadDisplay(weatherData.current, day, cityName);
     loadCards(weatherData.daily, day);
 };
-
 
 function loadDisplay(currentWeather, day, cityName) {
     let display = document.getElementById('current-weather');
@@ -95,8 +93,13 @@ function loadCards(dailyWeather, day) {
     }
 };
 
-
 form.addEventListener('submit', (event) => {
     event.preventDefault();
-    fetchCity();
+
+    if(event.submitter.innerText != "Search"){
+        fetchCity(event.submitter.innerText);
+    }
+    else{
+        fetchCity(form.elements['city-name'].value);
+    }
 });
