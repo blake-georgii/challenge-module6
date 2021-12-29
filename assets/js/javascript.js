@@ -1,4 +1,5 @@
 const form = document.getElementById('city-form');
+const cityHistory = [];
 
 function fetchCity(cityName) {
     let key = 'ca321dd665a915445a40608ae28b8292';
@@ -39,11 +40,21 @@ function fetchWeather(cityData, cityName) {
 };
 
 function createHistory(cityName) {
-    const e = document.createElement('button');
-    e.className = "container history-item form-input";
-    e.innerHTML = `${cityName}`;
-    e.type = 'submit';
-    form.appendChild(e);
+    const seenBefore = cityHistory.map(city => {
+        if (city == cityName) {
+            return true;
+        };
+    });
+
+    console.log(seenBefore);
+    if (!seenBefore[0]) {
+        cityHistory.push(cityName);
+        const e = document.createElement('button');
+        e.className = "container history-item form-input";
+        e.innerHTML = `${cityName}`;
+        e.type = 'submit';
+        form.appendChild(e);
+    }
 }
 
 function loadPage(weatherData, cityName) {
@@ -96,10 +107,10 @@ function loadCards(dailyWeather, day) {
 form.addEventListener('submit', (event) => {
     event.preventDefault();
 
-    if(event.submitter.innerText != "Search"){
+    if (event.submitter.innerText != "Search") {
         fetchCity(event.submitter.innerText);
     }
-    else{
+    else {
         fetchCity(form.elements['city-name'].value);
     }
 });
