@@ -62,6 +62,19 @@ function loadDisplay(currentWeather, day) {
     
 };
 
+function calcUVI(uvi){  
+
+    if(uvi < 3.3){
+        return "green";
+    }
+    else if(uvi < 6.7){
+        return "yellow";
+    }
+    else{
+        return "red";
+    }
+}
+
 function loadCards(dailyWeather, day) {
     for (let i = 1; i < 6; i++) {
         day.setDate(day.getDate() + 1);
