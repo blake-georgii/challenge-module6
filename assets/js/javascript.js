@@ -60,7 +60,8 @@ function loadDisplay(currentWeather, day, cityName) {
     let display = document.getElementById('current-weather');
 
     display.innerHTML = `<div class="card-body">
-    <h2 class="card-title">${cityName} (${day.getMonth()}/${day.getDate()}/${day.getFullYear()})</h2>
+    <h2 class="card-title">${cityName} (${day.getMonth()}/${day.getDate()}/${day.getFullYear()})
+    <img src="http://openweathermap.org/img/wn/${currentWeather.weather[0].icon}@2x.png"></h2>
     <p class="card-text">Temp: ${currentWeather.temp}°F</p>
     <p class="card-text">Wind: ${currentWeather.wind_speed}MPH</p>
     <p class="card-text">Humidity: ${currentWeather.humidity}%</p>
@@ -86,6 +87,7 @@ function loadCards(dailyWeather, day) {
         day.setDate(day.getDate() + 1);
         document.getElementById(i).innerHTML = `<div class="card-body">
         <h5 class="card-title">(${day.getMonth()}/${day.getDate()}/${day.getFullYear()})</h5>
+        <img src="http://openweathermap.org/img/wn/${dailyWeather[i].weather[0].icon}@2x.png" style="height: 3em">
         <p class="card-text">Temp: ${dailyWeather[i].temp.day}°F</p>
         <p class="card-text">Wind: ${dailyWeather[i].wind_speed}MPH</p>
         <p class="card-text">Humidity: ${dailyWeather[i].humidity}%</p>
