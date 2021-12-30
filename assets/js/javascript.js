@@ -40,14 +40,15 @@ function fetchWeather(cityData, cityName) {
 };
 
 function createHistory(cityName) {
-    const seenBefore = cityHistory.map(city => {
+    let seenBefore = false;
+    cityHistory.forEach(city => {
         if (city == cityName) {
-            return true;
+            seenBefore = true;
         };
     });
 
     console.log(seenBefore);
-    if (!seenBefore[0]) {
+    if (!seenBefore) {
         cityHistory.push(cityName);
         const e = document.createElement('button');
         e.className = "container history-item form-input";
